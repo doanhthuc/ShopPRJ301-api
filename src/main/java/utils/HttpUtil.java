@@ -35,4 +35,8 @@ public class HttpUtil {
         }
         return new HttpUtil(sb.toString());
     }
+
+    public String getValue() {
+        return value;
+    }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
     @Override
     public Integer save(Order order) {
-        String sql = "INSERT INTO orders (customer_id, oder_date) VALUES (?, ?)";
+        String sql = "INSERT INTO orders (customer_id, order_date) VALUES (?, ?)";
         Integer orderId = insert(sql, order.getCustomerId(), order.getOrderDate());
         String orderDetailSql = "INSERT INTO order_details (product_id, order_id, quantity, price) VALUES (?, ?, ?, ?)";
         for (Product product: order.getOrderList()) {

@@ -1,0 +1,34 @@
+###
+GET http://localhost:8080/prj_assignment_war_exploded/ProductServlet?page=1&limit=3&sortName=price&sortBy=desc
+
+###
+POST http://localhost:8080/prj_assignment_war_exploded/ProductServlet
+Content-Type: application/json
+
+{
+  "name": "La roche Posay B5113",
+  "price": "25",
+  "quantity": "30",
+  "description": "Acid serum with vitamin B5",
+  "categoryId": "3",
+  "sellerId": "3"
+}
+
+###
+GET http://localhost:8080/prj_assignment_war_exploded/OrderServlet?customerId=2
+
+###
+POST http://localhost:8080/prj_assignment_war_exploded/OrderServlet
+Content-Type: application/json
+
+{
+  "customerId": "2",
+  "orderList": [
+    {
+      "id": "2",
+      "name": "Samsung galaxy note 21",
+      "quantity": "1",
+      "price": "110"
+    }
+  ]
+}

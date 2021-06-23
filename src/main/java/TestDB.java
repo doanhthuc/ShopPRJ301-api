@@ -6,11 +6,11 @@ import java.util.List;
 
 
 public class TestDB {
-    public static void main(String[] args) {
-        IProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.findAll();
-        for (Product product: list) {
-            System.out.println(product);
-        }
-    }
+//    public static void main(String[] args) {
+//        IProductDAO productDAO = new ProductDAO();
+//        List<Product> list = productDAO.findAll();
+//        for (Product product: list) {
+//            System.out.println(product);
+//        }
+//    }
 }

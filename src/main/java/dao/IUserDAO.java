@@ -10,6 +10,6 @@ public interface IUserDAO extends GenericDAO<User> {
     User findOne(Integer id);
     void update(User updateUser);
     void delete(Integer id);
-    User findByUserNameAndPassword(String userName, String password);
+    User findByUsernameAndPassword(String userName, String password);
     boolean hasExistedUsername(String username);
 }

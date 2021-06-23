@@ -17,11 +17,11 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
     @Override
     public User findOne(Integer id) {
-        String sql = "SELECT u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
+        String sql = "SELECT u.id, u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
                 "r.name role_name, ra.id rank_id, ra.name rank_name, ra.discount_percent \n" +
                 "FROM User_Account u JOIN Role r ON u.role_id = r.id \n" +
                 "JOIN Ranking ra ON u.rank_id = ra.id " +
-                "WHERE id = ?";
+                "WHERE u.id = ?";
         List<User> list = query(sql, new UserMapper(), id);
         return list.isEmpty() ? null : list.get(0);
     }
@@ -47,7 +47,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
     }
 
     @Override
-    public User findByUserNameAndPassword(String userName, String password) {
+    public User findByUsernameAndPassword(String userName, String password) {
         String sql = "SELECT u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
                 "r.name role_name, ra.id rank_id, ra.name rank_name, ra.discount_percent \n" +
                 "FROM User_Account u JOIN Role r ON u.role_id = r.id \n" +

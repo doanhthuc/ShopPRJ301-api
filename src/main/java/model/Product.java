@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Product {
     private Integer id;
     private String name;

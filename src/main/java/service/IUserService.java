@@ -4,5 +4,5 @@ import model.User;
 
 public interface IUserService {
     User register(User user);
-    User findByUsernameAndPassword(String userName, String password);
+    User findByUsernameAndPassword(String username, String password);
 }
