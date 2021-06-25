@@ -27,6 +27,17 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
     }
 
     @Override
+    public User findOne(String username) {
+        String sql = "SELECT u.id, u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
+                "r.name role_name, ra.id rank_id, ra.name rank_name, ra.discount_percent \n" +
+                "FROM User_Account u JOIN Role r ON u.role_id = r.id \n" +
+                "JOIN Ranking ra ON u.rank_id = ra.id " +
+                "WHERE u.username = ?";
+        List<User> list = query(sql, new UserMapper(), username);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
     public void update(User updateUser) {
         String sql = "UPDATE user_Account SET full_name = ?, username = ?, password = ?, address = ?, \n" +
                 "phone = ?, role_id = ?, rank_id = ? WHERE id = ?";
@@ -48,7 +59,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
     @Override
     public User findByUsernameAndPassword(String userName, String password) {
-        String sql = "SELECT u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
+        String sql = "SELECT u.id, u.full_name, u.username, u.password, u.address, u.phone, r.id role_id, \n" +
                 "r.name role_name, ra.id rank_id, ra.name rank_name, ra.discount_percent \n" +
                 "FROM User_Account u JOIN Role r ON u.role_id = r.id \n" +
                 "JOIN Ranking ra ON u.rank_id = ra.id " +

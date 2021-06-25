@@ -21,4 +21,9 @@ public class UserService implements IUserService {
     public User findByUsernameAndPassword(String username, String password) {
         return userDAO.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User findOne(String username) {
+        return userDAO.findOne(username);
+    }
 }

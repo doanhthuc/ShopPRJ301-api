@@ -16,9 +16,11 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/prj_assignment_war_exploded/OrderServlet?customerId=2
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
 
 ###
 POST http://localhost:8080/prj_assignment_war_exploded/OrderServlet
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
 Content-Type: application/json
 
 {
@@ -31,4 +33,13 @@ Content-Type: application/json
       "price": "110"
     }
   ]
+}
+
+###
+POST http://localhost:8080/prj_assignment_war_exploded/LoginServlet
+Content-Type: application/json
+
+{
+  "username": "doanhthuc",
+  "password": "123"
 }

@@ -6,7 +6,8 @@ create table Role (
 create table Ranking (
                          id int primary key not null IDENTITY(1, 1),
                          name nvarchar(50) not null,
-                         discount_percent float null
+                         discount_percent float null,
+                         total_spent float
 )
 
 create table User_Account (
