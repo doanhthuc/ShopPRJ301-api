@@ -26,7 +26,7 @@ public class OrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        Integer customerId = Integer.valueOf(request.getParameter("customerId"));
+        Integer customerId = (Integer) request.getAttribute("userId");
         List<Order> orders = orderService.findAllByCustomerId(customerId);
         PrintWriter out = response.getWriter();
         out.write(gson.toJson(orders));
@@ -37,6 +37,8 @@ public class OrderServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         Order newOrder = gson.fromJson(HttpUtil.of(request.getReader()).getValue(), Order.class);
+        Integer customerId = (Integer) request.getAttribute("userId");
+        newOrder.setCustomerId(customerId);
         newOrder = orderService.save(newOrder);
         PrintWriter out = response.getWriter();
         out.write(gson.toJson(newOrder));

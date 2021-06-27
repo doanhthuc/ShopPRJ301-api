@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class Product {
     private Float price;
     private Integer quantity;
     private String description;
+    private String imageUrl;
 
     private Timestamp createDate;
     private Timestamp modifyDate;
@@ -25,4 +27,7 @@ public class Product {
 
     private Integer sellerId;
     private User seller;
+
+    private Integer totalPage;
+    private List<Product> products;
 }

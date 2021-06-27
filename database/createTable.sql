@@ -35,7 +35,8 @@ create table Product (
                          price float not null,
                          quantity int not null,
                          seller_id int null,
-                         description nvarchar(50),
+                         description text,
+                         image_url text,
                          create_date datetime,
                          modify_date datetime,
                          constraint FK_Category foreign key(category_id) references Category(id),
@@ -74,10 +75,10 @@ values ('Admin'),
 	   ('Customer'),
 	   ('Seller')
 
-insert into Ranking (name, discount_percent)
-values ('Bronze', 0.01),
-	   ('Silver', 0.05),
-	   ('Gold', 0.1)
+insert into Ranking (name, discount_percent, total_spent)
+values ('Bronze', 0.01, 0),
+	   ('Silver', 0.05, 500),
+	   ('Gold', 0.1, 1000)
 
 insert into User_Account (full_name, username, password, address, phone, role_id, rank_id)
 values ('Le Phuoc Cuong', 'cuongle', '123', '202 FPTU Dom', '123456789', 1, 1),
@@ -89,14 +90,14 @@ values ('Food'),
 	   ('Technology'),
 	   ('Cosmetic')
 
-insert into Product (name, category_id, price, quantity, seller_id, description, create_date, modify_date)
-values ('Laptop Dell', 2, 1000000000, 25, 3, 'Laptop for Dell', '20210619', '20210619')
+insert into Product (name, category_id, price, quantity, seller_id, description, create_date, modify_date, image_link)
+values ('Laptop Dell', 2, 700, 25, 3, 'Laptop for Dell', '20210619', '20210619', 'https://image-link.png')
 
 insert into Orders (customer_id, order_date)
 values (2, '20210619')
 
 insert into Order_Details (product_id, order_id, quantity, total_price)
-values (1, 1, 10, 1234456)
+values (1, 1, 1, 700)
 
 select * from Role
 select * from Ranking

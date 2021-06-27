@@ -31,6 +31,9 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        int totalPages = productService.getTotalItem();
+        Product productModel = new Product();
         if (request.getParameter("page") != null && request.getParameter("limit") != null) {
             int page = Integer.parseInt(request.getParameter("page"));
             int limit = Integer.parseInt(request.getParameter("limit"));
@@ -38,13 +41,15 @@ public class ProductServlet extends HttpServlet {
             Pageable pageable = new PageRequest(page, limit, sorter);
             List<Product> products = productService.findAll(pageable);
             Gson gson = new Gson();
-            PrintWriter out = response.getWriter();
-            out.write(gson.toJson(products));
+            productModel.setTotalPage(totalPages);
+            productModel.setProducts(products);
+            out.write(gson.toJson(productModel));
         } else {
             List<Product> products = productService.findAll();
             Gson gson = new Gson();
-            PrintWriter out = response.getWriter();
-            out.write(gson.toJson(products));
+            productModel.setTotalPage(totalPages);
+            productModel.setProducts(products);
+            out.write(gson.toJson(productModel));
         }
     }
 

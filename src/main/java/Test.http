@@ -6,16 +6,17 @@ POST http://localhost:8080/prj_assignment_war_exploded/ProductServlet
 Content-Type: application/json
 
 {
-  "name": "La roche Posay B5113",
+  "name": "La roche lotion",
   "price": "25",
   "quantity": "30",
-  "description": "Acid serum with vitamin B5",
+  "description": "Rose water toner and lotion",
   "categoryId": "3",
-  "sellerId": "3"
+  "sellerId": "3",
+  "image_url": "http//image-link.png"
 }
 
 ###
-GET http://localhost:8080/prj_assignment_war_exploded/OrderServlet?customerId=2
+GET http://localhost:8080/prj_assignment_war_exploded/OrderServlet
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
 
 ###

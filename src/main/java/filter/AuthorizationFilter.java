@@ -58,10 +58,9 @@ public class AuthorizationFilter implements Filter {
                 DecodedJWT jwt = verifier.verify(token);
                 Claim claim = jwt.getClaim("user");
                 Map<String, Object> map = claim.asMap();
-                System.out.println(map.toString());
-                req.setAttribute("userId", map.get("id"));
-                req.setAttribute("username", map.get("username"));
-                chain.doFilter(req, response);
+                request.setAttribute("userId", map.get("id"));
+                request.setAttribute("username", map.get("username"));
+                chain.doFilter(request, response);
             } catch (JWTVerificationException exception){
                 //Invalid signature/claims
                 TokenResp tokenResp = new TokenResp(false, "Invalid Access token");
