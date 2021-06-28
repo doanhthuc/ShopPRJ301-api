@@ -44,6 +44,7 @@ public class RegisterServlet extends HttpServlet {
             out.write(gson.toJson(tokenResp));
             return;
         }
+        newUser.setRankId(1);
         newUser = userService.register(newUser);
         try {
             Algorithm algorithm = Algorithm.HMAC256("secret");
@@ -56,7 +57,7 @@ public class RegisterServlet extends HttpServlet {
                     .withIssuer("auth0")
                     .sign(algorithm);
             TokenResp tokenResp = new TokenResp(true, "Register successfully", token);
-            response.setStatus(500);
+            response.setStatus(200);
             out.write(gson.toJson(tokenResp));
         } catch (JWTCreationException exception){
 //                        .withExpiresAt(Date.from(Instant.now().plus(TOKEN_VALIDITY)))

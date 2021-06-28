@@ -12,6 +12,7 @@ import model.TokenResp;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -27,6 +28,26 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse resp = (HttpServletResponse) response;
+//        resp.setHeader("Access-Control-Allow-Origin", "*");
+//        resp.setHeader("Access-Control-Allow-Credentials", "true");
+//        resp.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+//        resp.setHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+        // Authorize (allow) all domains to consume the content
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Origin", "*");
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Headers", "*");
+
+        HttpServletResponse resp = (HttpServletResponse) response;
+
+        // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
+        if (req.getMethod().equals("OPTIONS")) {
+            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+            return;
+        }
+
+
         if (req.getMethod().equals("POST")
                 && req.getServletPath().equals("/LoginServlet")) {
             chain.doFilter(req, response);

@@ -39,13 +39,13 @@ public class LoginServlet extends HttpServlet {
         User user = userService.findOne(userId);
         if (user == null) {
             response.setStatus(400);
-            response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+//            response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
             TokenResp tokenResp = new TokenResp(false, null);
             out.write(gson.toJson(tokenResp));
             return;
         }
         response.setStatus(500);
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+//        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
         out.write(gson.toJson(user));
     }
 
@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
         User user = gson.fromJson(HttpUtil.of(request.getReader()).getValue(), User.class);
         if (user.getUsername() == null || user.getPassword() == null) {
             response.setStatus(400);
-            response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
             TokenResp tokenResp = new TokenResp(false, "Missing username and/or password");
             out.write(gson.toJson(tokenResp));
             return;
@@ -65,7 +64,6 @@ public class LoginServlet extends HttpServlet {
         user = userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (user == null) {
             response.setStatus(401);
-            response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
             TokenResp tokenResp = new TokenResp(false, "Incorrect username or password");
             out.write(gson.toJson(tokenResp));
         } else {
@@ -80,8 +78,8 @@ public class LoginServlet extends HttpServlet {
                         .withIssuer("auth0")
                         .sign(algorithm);
                 TokenResp tokenResp = new TokenResp(true, "Login successfully", token);
-                response.setStatus(500);
-                response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+                response.setStatus(200);
+//                response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
                 out.write(gson.toJson(tokenResp));
             } catch (JWTCreationException exception){
 //                        .withExpiresAt(Date.from(Instant.now().plus(TOKEN_VALIDITY)))

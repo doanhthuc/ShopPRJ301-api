@@ -59,7 +59,7 @@ public class ProductDAO extends AbstractDAO<Product> implements IProductDAO {
     @Override
     public List<Product> findAll(Pageable pageable) {
         String sql = "SELECT p.id, p.name, p.price, p.quantity, p.description, p.image_url, c.id category_id, c.name category_name, " +
-                "u.id seller_id, u.full_name seller_name, u.phone seller_phone, u.address seller_address" +
+                "u.id seller_id, u.full_name seller_name, u.phone seller_phone, u.address seller_address " +
                 "FROM Product p JOIN Category c ON p.category_id = c.id " +
                 "JOIN User_Account u ON p.seller_id = u.id\n";
         pageable.setSorter(pageable.getSorter().getSortName() == null ? new Sorter("id", "")

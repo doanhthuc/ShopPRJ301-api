@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/prj_assignment_war_exploded/ProductServlet?page=1&limit=3&sortName=price&sortBy=desc
+GET http://localhost:8080/prj_assignment_war_exploded/ProductServlet?page=2&limit=3&sortName=price&sortBy=desc
 
 ###
 POST http://localhost:8080/prj_assignment_war_exploded/ProductServlet
@@ -43,4 +43,17 @@ Content-Type: application/json
 {
   "username": "doanhthuc",
   "password": "123"
+}
+
+###
+POST http://localhost:8080/prj_assignment_war_exploded/RegisterServlet
+Content-Type: application/json
+
+{
+  "fullName": "Nguyen Van Tien Dung",
+  "username": "tiendungAI",
+  "password": "tiensiML",
+  "address": "vien AI Nha Trang",
+  "phone": "0339198650",
+  "roleId": "2"
 }
