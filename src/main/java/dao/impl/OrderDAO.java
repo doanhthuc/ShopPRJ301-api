@@ -31,4 +31,14 @@ public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
         List<Order> list = query(sql, new OrderMapper(), orderId);
         return list.isEmpty() ? null : list.get(0);
     }
+
+    public Integer save(Order order, String username) {
+        String sql = "INSERT INTO orders (customer_id, order_date) VALUES (?, ?)";
+        Integer orderId = insert(sql, order.getCustomerId(), order.getOrderDate());
+        String orderDetailSql = "INSERT INTO order_detail (product_id, username, price, quantity) VALUES (?, ?, ?, ?)";
+        for (Product product: order.getOrderList()) {
+            insert(orderDetailSql, product.getId(), orderId, product.getQuantity(), product.getPrice());
+        }
+        return orderId;
+    }
 }

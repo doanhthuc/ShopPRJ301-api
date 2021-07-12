@@ -56,6 +56,9 @@ public class AuthorizationFilter implements Filter {
         }else if (req.getMethod().equals("GET")
                 && req.getServletPath().equals("/ProductServlet")) {
             chain.doFilter(req, response);
+        } else if (req.getMethod().equals("GET")
+                && req.getServletPath().equals("/CommentServlet")) {
+            chain.doFilter(req, response);
         } else {
             request.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");

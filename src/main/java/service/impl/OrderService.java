@@ -61,4 +61,8 @@ public class OrderService implements IOrderService {
         }
         return orders;
     }
+
+//    public Order save(Order newOrder, String username) {
+//        newOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
+//    }
 }

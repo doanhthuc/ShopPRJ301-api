@@ -12,7 +12,7 @@ Content-Type: application/json
   "description": "Rose water toner and lotion",
   "categoryId": "3",
   "sellerId": "3",
-  "image_url": "http//image-link.png"
+  "imageUrl": "http//image-link.png"
 }
 
 ###
@@ -28,7 +28,7 @@ Content-Type: application/json
   "customerId": "2",
   "orderList": [
     {
-      "id": "2",
+      "id": "2`",
       "name": "Samsung galaxy note 21",
       "quantity": "1",
       "price": "110"
@@ -57,3 +57,43 @@ Content-Type: application/json
   "phone": "0339198650",
   "roleId": "2"
 }
+### ------------ New API Call to test order and comment ----------------
+###
+POST http://localhost:8080/prj_assignment_war_exploded/OrderDetailServlet
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
+Content-Type: application/json
+
+{
+  "orderDetailList": [
+    {
+      "productId": 1,
+      "username": "doanhthuc",
+      "price": 100,
+      "quantity": 2
+    },
+    {
+      "productId": 2,
+      "username": "doanhthuc",
+      "price": 150,
+      "quantity": 2
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/prj_assignment_war_exploded/OrderDetailServlet
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
+
+
+###
+POST http://localhost:8080/prj_assignment_war_exploded/CommentServlet
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXIiOnsiaWQiOjIsInVzZXJuYW1lIjoiZG9hbmh0aHVjIn19.jVBluCV8pYbdpyc8GivIjjKPU9kOVsTBvjLFo7WoJSM
+Content-Type: application/json
+
+{
+  "content": "Nice Product!!!",
+  "productId": "2"
+}
+
+###
+GET http://localhost:8080/prj_assignment_war_exploded/CommentServlet?productId=2
